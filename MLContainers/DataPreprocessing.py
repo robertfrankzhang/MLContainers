@@ -2,15 +2,24 @@ import pandas as pd
 import numpy as np
 
 # Takes in data_path (must be .csv, .txt, or .gz) and returns pandas dataframe
-def load_data(data_path):
+def load_data(data_path,instance_label=None):
     if data_path[-1] == 't':
-        return pd.read_csv(data_path, sep='\t')
+        df = pd.read_csv(data_path, sep='\t')
     elif data_path[-1] == 'v':
-        return pd.read_csv(data_path, sep=',')
+        df = pd.read_csv(data_path, sep=',')
     elif data_path[-1] == 'z':
-        return pd.read_csv(data_path, sep='\t', compression='gzip')
+        df = pd.read_csv(data_path, sep='\t', compression='gzip')
     else:
         raise Exception('Unrecognized File Type')
+
+    if instance_label != None:
+        try:
+            df.set_index(instance_label)
+            return df
+        except:
+            print('Unable to access instance column: cannot set column to index')
+    else:
+        return df
 
 # Removes specified features from dataframe
 def remove_features(df, feature_names):

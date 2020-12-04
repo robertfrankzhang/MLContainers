@@ -6,7 +6,7 @@ with open("README.md","r") as fh:
 setup(
   name = 'MLContainers',
   packages = ['MLContainers'],
-  version = '1.0',
+  version = '1.0.1',
   license='License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
   description = 'Collection of Modular, Reusable ML Pipeline Components',
   long_description_content_type="text/markdown",
